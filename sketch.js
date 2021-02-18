@@ -40,8 +40,8 @@ function setup(){
 function draw() {
     background(0);
 
-    createEdgeSprites();
-    //square.bounceOff(edges);
+    var edges = createEdgeSprites();
+    square.bounceOff(edges);
     
     //add condition to check if box touching surface and make it box
     if(square.isTouching(block1)){
