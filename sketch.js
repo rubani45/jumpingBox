@@ -39,41 +39,29 @@ function setup(){
 
 function draw() {
     background(0);
+
+    createEdgeSprites();
+    //square.bounceOff(edges);
     
     //add condition to check if box touching surface and make it box
-    if(CollisionMaster(block1,square)){
-        square.shapeColor = "red";
-        square.velocityX = 0;
-        square.velocityY = 0;
-        music.stop();
-    } else{
-        if(CollisionMaster(block4,square)){
-           square.shapeColor = "yellow";
-           square.velocityX = 0;
-           square.velocityY = 0;
-           music.stop();
-        } else{
-            if(CollisionMaster(block3,square)){
-               square.shapeColor = "green";
-               square.velocityX = 0;
-               square.velocityY = 0;
-               music.stop();
-            } else{
-                if(CollisionMaster(block2,square)){
-                   square.shapeColor = "blue";
-                   square.velocityX = 0;
-                   square.velocityY = 0;
-                   music.stop();
-              } 
-        }
-    } 
- }
-    createEdgeSprites();
+    if(square.isTouching(block1)){
+       square.velocityX = 0;
+       square.velocityY = 0;
+       square.shapeColor = "red";
+       music.stop();
+    }
+    if(square.isTouching(block4)){
+       square.bounceOff(block4);
+       square.shapeColor = "yellow";
+       
+    }
+    if(square.isTouching(block3)){
+       square.bounceOff(block3);
+       square.shapeColor = "green";
+    }
+    if(square.isTouching(block2)){
+        square.bounceOff(block2);  
+        square.shapeColor = "blue";
+    }
     drawSprites();
 }
-function CollisionMaster(object1,object2){
-    if( object1.y - object2.y < object2.height/2 + object1.height/2 &&
-        object1.x - object2.x < object2.width/2 + object1.width/2){
-       return true;
-        }
- }
